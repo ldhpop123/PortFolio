@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreatePortfolioItemDto } from './dto/create-portfolio_item.dto';
 import { UpdatePortfolioItemDto } from './dto/update-portfolio_item.dto';
 import { PrismaService } from 'src/prisma.service';
-import { PortFolioItems, Prisma } from '@prisma/client'
+import { PortFolioItems} from '@prisma/client'
 
 @Injectable()
 export class PortfolioItemsService {
@@ -11,6 +11,9 @@ export class PortfolioItemsService {
   async item(id: number): Promise<PortFolioItems | null> {
     return this.prisma.portFolioItems.findUnique({
       where: { id },
+      include: {
+        content: true, // 콘텐츠까지 같이 가져옴
+      },
     });
   }
 
