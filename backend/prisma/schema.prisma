@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PortFolioItems {
+  id  Int  @default(autoincrement()) @id
+  src String
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt  
+
+  // 1 : N 관계
+  content ItemContents[]
+}
+
+model ItemContents {
+  id Int @id @default(autoincrement())
+  type String
+  content String
+  portfolioItemId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt  
+
+  // PortFolioId를 외래키로 설정, onDelete 설정 (item이 삭제되면 content도 같이 삭제)
+  portfolio PortFolioItems @relation(fields: [portfolioItemId], references: [id], onDelete: Cascade)
+}

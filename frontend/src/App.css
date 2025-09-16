@@ -1,0 +1,33 @@
+header {
+  height: 20%;
+  border-bottom: 1px solid gray;
+}
+
+.headerText {
+  font-size: 100%;
+  margin-left: 4%;
+}
+
+.navContainer {
+  display: flex;
+  justify-content:space-around;
+  list-style: none;
+  padding: 0;
+}
+
+.navItem{
+  flex: 1;
+  text-align: center;
+  padding: 16px 0;
+  text-decoration: none;
+  color: #ffffffde;
+}
+
+.navItem:hover {
+  background-color: #202020;
+}
+
+/* img */
+img {
+  width: 100%;
+}

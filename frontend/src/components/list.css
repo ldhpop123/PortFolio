@@ -1,0 +1,11 @@
+.listUpGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.GridItem {
+    max-width: 550px;
+}
